@@ -1,0 +1,55 @@
+# Document formats
+USE="${USE} dvi gs pdf ps"
+
+# Graphics formats
+USE="${USE} apng exif gif jpeg png svg webp"
+
+# Graphics applications
+USE="${USE} gd imagemagick gimp"
+
+# Media codecs
+USE="${USE} aac alsa dts mp3 mp4 mpeg ogg theora vorbis vpx webm x264 xvid"
+
+# Media applications
+USE="${USE} ffmpeg gd gstreamer xine"
+
+# Qt configuration
+USE="${USE} gtkstyle qt3support multimedia phonon optimized-qmake private-headers pch"
+
+# Audio
+USE="${USE} alsa libcanberra -pulseaudio sound"
+
+# Video
+USE="${USE} v4l vaapi"
+
+# CD
+USE="${USE} cdda cddb cdparanoia cdr"
+
+# DVD
+USE="${USE} a52 css dvd dvdr"
+
+# X11
+USE="${USE} X cairo egl gallium gbm gtk gtk3 libkms libnotify opengl openvg shared-dricore shared-glapi startup-notification truetype qt4 xcb xcomposite xinerama xosd xrandr xrender xscreensaver xv xvmc"
+
+# Xfce
+USE="${USE} thunar xfce xfce_plugins_brightness xfce_plugins_logout xfce_plugins_trash"
+
+# Web
+USE="${USE} firefox nsplugin webgl webkit"
+
+# Application specific (dependencies)
+
+# Chromium
+USE="${USE} icu"
+
+# Mozilla
+USE="${USE} system-sqlite"
+
+# Gnome 3
+USE="${USE} eds gnome archive networkmanager nautilus packagekit sendto playlist pulseaudio gdm"
+
+# Instant messaging
+USE="${USE} irc jabber msn pidgin upnp"
+
+# Gedit plugins
+USE="${USE} smartspaces"

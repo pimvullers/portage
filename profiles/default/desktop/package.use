@@ -1,0 +1,42 @@
+app-office/libreoffice -java
+app-text/poppler -lcms
+dev-cpp/gtkmm accessibility
+dev-python/PyQt4 examples doc
+dev-util/qt-creator fakevim qml qtscript examples doc
+gnome-base/gvfs gdu
+mail-client/thunderbird ldap
+media-libs/mesa gles
+media-video/mplayer -speex
+net-im/pidgin -ncurses
+sys-block/gparted fat ntfs xfce
+x11-apps/fusion-icon -qt4
+x11-base/xorg-server -hal
+x11-libs/qt-assistant doc
+x11-wm/compiz-fusion emerald
+xfce-base/thunar -gnome 
+xfce-base/xfce4-meta minimal
+xfce-base/xfce4-settings sound
+x11-themes/elementary-gtk-theme cursors icons
+mail-client/postler addressbook html
+app-emulation/virtualbox extensions
+
+x11-themes/gtk-engines-murrine -themes
+
+# TeX support
+app-text/lcdf-typetools kpathsea
+media-libs/freetype kpathsea
+
+# SQLite 
+dev-db/sqlite fts3 secure-delete unlock-notify
+
+# Get rid of Gnome2 deps
+app-editors/gvim -gnome
+app-office/dia -gnome
+mail-client/thunderbird -gnome
+x11-plugins/enigmail -gnome
+
+# Fix Nauilus sendto
+media-libs/xine-lib -gnome
+media-video/vlc -gnome
+sys-fs/ntfsprogs -gnome
+media-sound/pulseaudio -X

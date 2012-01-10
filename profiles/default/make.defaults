@@ -1,0 +1,23 @@
+# System applications
+USE="${USE} bash-completion consolekit cups dbus exceptions fam gmp glib gudev hardened introspection jce minizip nss pcre policykit spell sqlite sqlite3 syslog threads udev vim-syntax vala"
+
+# Hardware
+USE="${USE} acpi cups fuse llvm llvm-gcc smp usb"
+
+# File systems
+USE="${USE} fat fuse ntfs"
+
+# Networking
+USE="${USE} curl ftp ntp resolvconf samba webdav"
+
+# TeX
+USE="${USE} fontconfig kpathsea"
+
+# Version control systems
+USE="${USE} bazaar cvs git subversion"
+
+# XML
+USE="${USE} expat xml xmlpatterns xmlreader xmlrpc xmlwriter xsl xslt"
+
+# Web
+USE="${USE} apache2 php mysql mysqli mysqlnd"

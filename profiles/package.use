@@ -1,0 +1,58 @@
+app-emulation/virtualbox extensions
+app-emulation/wine -pulseaudio
+app-office/libreoffice -java
+app-portage/eix optimization
+app-portage/layman git
+app-text/aspell linguas_en linguas_nl linguas_fr linguas_de
+app-text/evince dvi
+app-text/poppler -lcms
+app-text/texlive -X extra graphics pstricks
+dev-cpp/gtkmm accessibility
+dev-db/sqlite extensions secure-delete unlock-notify
+dev-libs/libgpg-error static-libs
+dev-python/PyQt4 examples doc sql webkit
+dev-util/qt-creator examples bookmarks bineditor doc fakevim qml qtscript
+dev-vcs/subversion -dso
+gnome-base/gvfs -samba -cdda gdu
+mail-client/thunderbird ldap
+media-gfx/inkscape dia postscript lcms
+media-libs/mesa gallium gles
+media-video/ffmpeg -encode
+net-libs/libsoup gnome
+net-misc/dhcpcd zeroconf
+net-nds/openldap minimal
+net-print/cnijfilter ip4200
+net-print/cups ppds
+net-print/hplip -qt4
+sys-block/gparted fat ntfs xfce
+sys-block/parted device-mapper
+sys-fs/udev extras
+virtual/ffmpeg -encode
+x11-libs/cairo -qt4
+x11-libs/qt-assistant doc
+x11-libs/qt-qt3support kde
+x11-libs/qt-webkit kde
+x11-themes/elementary-gtk-theme cursors icons
+xfce-base/thunar -gnome 
+xfce-base/xfce4-meta minimal
+xfce-base/xfce4-settings sound
+
+app-editors/gvim -gnome
+mail-client/thunderbird -gnome
+x11-plugins/enigmail -gnome
+app-office/dia -gnome
+x11-libs/wxGTK -gnome
+dev-util/meld -gnome
+gnome-base/gnome -extras -fallback
+app-editors/gedit-plugins smartspaces
+
+gnome-base/nautilus -sendto
+
+dev-libs/libgcrypt static-libs
+dev-libs/popt static-libs
+
+net-im/pidgin -spell
+dev-vcs/rabbitvcs -spell
+
+dev-java/swing-layout source
+dev-util/netbeans netbeans_modules_cnd netbeans_modules_javacard netbeans_modules_php

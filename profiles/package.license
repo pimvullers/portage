@@ -1,0 +1,12 @@
+app-cdr/nero Nero-EULA-US
+app-emulation/emul-linux-x86-java dlj-1.1
+app-emulation/virtualbox-additions PUEL
+app-emulation/virtualbox-bin PUEL
+app-emulation/virtualbox-extpack-oracle PUEL
+dev-java/java-card-kit sun-bcla-java-vm
+dev-java/sun-jce-bin Oracle-BCLA-JavaSE
+dev-java/sun-jdk Oracle-BCLA-JavaSE
+dev-java/sun-jre-bin Oracle-BCLA-JavaSE
+net-im/skype skype-eula
+www-plugins/adobe-flash AdobeFlash-10.1
+www-client/google-chrome google-chrome
