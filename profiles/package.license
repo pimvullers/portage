@@ -8,5 +8,5 @@ dev-java/sun-jce-bin Oracle-BCLA-JavaSE
 dev-java/sun-jdk Oracle-BCLA-JavaSE
 dev-java/sun-jre-bin Oracle-BCLA-JavaSE
 net-im/skype skype-eula
-www-plugins/adobe-flash AdobeFlash-10.1
+www-plugins/adobe-flash AdobeFlash-10.3
 www-client/google-chrome google-chrome
