@@ -6,7 +6,7 @@ EAPI=4
 
 DESCRIPTION="pcsc-lite driver for the SCM SDI010"
 HOMEPAGE="http://www.scmmicro.com/"
-SRC_URI="http://www.scmmicro.com/support_tmp/download.php?file=${PN}_linux_64bit_driver_V${PV}.tar.gz -> scmccid_linux_64bit_driver_V5.0.21.tar.gz"
+SRC_URI="http://www.identive-infrastructure.com/support/download/scmccid_linux_64bit_driver_V${PV}.tar.gz"
 
 LICENSE=""
 SLOT="0"
