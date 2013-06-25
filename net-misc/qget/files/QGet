@@ -1,0 +1,7 @@
+#!/bin/sh
+
+killall -9 QGetServer > /dev/null 2>&1
+(cd /opt/qget && ./QGetServer > /dev/null 2>&1 &)
+sleep 1
+(cd /opt/qget && ./QGetClient > /dev/null 2>&1)
+killall -9 QGetServer > /dev/null 2>&1
