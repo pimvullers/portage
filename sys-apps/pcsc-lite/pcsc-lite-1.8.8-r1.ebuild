@@ -23,7 +23,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 # This is called libusb so that it doesn't fool people in thinking that
 # it is _required_ for USB support. Otherwise they'll disable udev and
 # that's going to be worse.
-IUSE="libusb +udev"
+IUSE="libusb static-libs +udev"
 
 REQUIRED_USE="^^ ( udev libusb )"
 
@@ -61,7 +61,6 @@ DOCS=( AUTHORS DRIVERS HELP README SECURITY ChangeLog )
 
 src_install() {
 	autotools-multilib_src_install
-#	prune_libtool_files
 
 	newinitd "${FILESDIR}"/pcscd-init.6 pcscd
 
