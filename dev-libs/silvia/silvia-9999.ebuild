@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools-utils git-2
+inherit flag-o-matic autotools-multilib git-2
 
 DESCRIPTION="SImple Library for the Verification and Issuance of Attributes"
 HOMEPAGE="https://github.com/credentials/silvia"
@@ -12,26 +12,35 @@ EGIT_REPO_URI="https://github.com/credentials/silvia"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
-IUSE="smartcard test xml"
+KEYWORDS="~amd64 ~amd64-fbsd ~arm ~arm-fbsd ~mips ~x86 ~x86-fbsd"
+IUSE="smartcard pcsc-lite libnfc test xml static static-libs"
+REQUIRED_USE="smartcard? ( || ( pcsc-lite libnfc ) )"
 
+LIB_DEPEND="
+	abi_x86_32? ( app-emulation/emul-linux-x86-baselibs )
+	=dev-libs/gmp-5*[cxx,static-libs(+)]
+	dev-libs/openssl[static-libs(+)]
+	pcsc-lite? ( sys-apps/pcsc-lite[abi_x86_32(+),static-libs(+)] )
+	libnfc? ( dev-libs/libnfc[abi_x86_32(+),sstatic-libs(+)] )
+	xml? ( dev-libs/libxml2[static-libs(+)] )
+	sys-libs/zlib[static-libs(+)]"
 RDEPEND="
-	=dev-libs/gmp-5*[cxx]
-	dev-libs/openssl
-	smartcard? ( sys-apps/pcsc-lite )
-	xml? ( dev-libs/libxml2 )"
+	!static? ( ${LIB_DEPEND//\[static-libs(+)]} )"
 DEPEND="${RDEPEND}
-	test? ( dev-util/cppunit )"
+	static? ( ${LIB_DEPEND} )
+	test? ( dev-util/cppunit[abi_x86_32(+)]	)"
 
 AUTOTOOLS_AUTORECONF=1
-AUTOTOOLS_PRUNE_LIBTOOL_FILES=all
 
 src_configure() {
+	use static && append-ldflags -static
+
 	local myeconfargs=(
-		$(use_with smartcard pcsc)
+		$(use_with pcsc-lite pcsc)
+		$(use_with libnfc nfc)
 		$(use_with test tests)
 		$(use_with xml xmlcfg)
 	)
 
-	autotools-utils_src_configure
+	autotools-multilib_src_configure
 }
