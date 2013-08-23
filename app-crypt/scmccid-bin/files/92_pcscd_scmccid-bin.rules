@@ -1,0 +1,10 @@
+# If not adding the device, go away
+ACTION!="add", GOTO="pcscd_scmccid-bin_rules_end"
+SUBSYSTEM!="usb", GOTO="pcscd_scmccid-bin_rules_end"
+ENV{DEVTYPE}!="usb_device", GOTO="pcscd_scmccid-bin_rules_end"
+
+# Tested on sdi010
+ATTRS{idVendor}=="04e6", ATTRS{idProduct}=="5121", ENV{PCSCD}="1"
+
+# All done
+LABEL="pcscd_scmccid-bin_rules_end"
