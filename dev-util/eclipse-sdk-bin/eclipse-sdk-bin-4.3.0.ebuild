@@ -15,7 +15,7 @@ SRC_URI="
 
 LICENSE="EPL-1.0"
 SLOT="4.3"
-KEYWORDS="~*"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
@@ -39,5 +39,5 @@ src_install() {
 	doins "${FILESDIR}"/eclipserc-bin-${SLOT}
 
 	dobin "${FILESDIR}"/eclipse-bin-${SLOT}
-	make_desktop_entry "eclipse-bin-${SLOT}" "Eclipse ${PV} (bin)" "${dest}/icon.xpm"
+	make_desktop_entry "eclipse-bin-${SLOT}" "Eclipse SDK ${SLOT}" "${dest}/icon.xpm"
 }
