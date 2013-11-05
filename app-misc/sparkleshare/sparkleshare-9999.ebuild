@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit base mono git
+inherit base mono git-2
 
 MY_PV="${PV/_rc/-rc}"
 MY_P="${PN}-${MY_PV}"
