@@ -33,7 +33,7 @@ DEPEND="${RDEPEND}
 AUTOTOOLS_AUTORECONF=1
 
 src_configure() {
-	use static && append-ldflags -static
+	use static && append-ldflags -static -lpthread
 
 	local myeconfargs=(
 		$(use_with pcsc-lite pcsc)
