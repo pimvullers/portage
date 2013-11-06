@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.8.8-r1.ebuild,v 1.1 2013/07/27 07:10:24 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.8.10.ebuild,v 1.1 2013/10/20 09:25:36 flameeyes Exp $
 
 EAPI="4"
 
@@ -9,9 +9,9 @@ inherit eutils autotools-multilib systemd udev user
 DESCRIPTION="PC/SC Architecture smartcard middleware library"
 HOMEPAGE="http://pcsclite.alioth.debian.org/"
 
-STUPID_NUM="3862"
+STUPID_NUM="3963"
 MY_P="${PN}-${PV/_/-}"
-SRC_URI="http://alioth.debian.org/download.php/${STUPID_NUM}/${MY_P}.tar.bz2"
+SRC_URI="http://alioth.debian.org/download.php/file/${STUPID_NUM}/${MY_P}.tar.bz2"
 S="${WORKDIR}/${MY_P}"
 
 # GPL-2 is there for the init script; everything else comes from
