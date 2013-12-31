@@ -6,7 +6,7 @@ EAPI=5
 
 DESCRIPTION="QNAP Turbo NAS download management tool"
 HOMEPAGE="http://www.qnap.com/"
-SRC_URI="http://download.qnap.com/Storage/Utility/QGet-1.0.7.1026.tar.gz"
+SRC_URI="http://download.qnap.com/Storage/Utility/QNAPQgetLinux-${PV}.tar.gz"
 
 LICENSE=""
 SLOT="0"
@@ -21,7 +21,7 @@ RDEPEND="
 	app-emulation/emul-linux-x86-xlibs"
 
 pkg_setup() {
-	S="${WORKDIR}/QGet"
+	S="${WORKDIR}/Qget"
 }
 
 src_install() {
@@ -31,7 +31,7 @@ src_install() {
 	doins -r res
 
 	exeinto /opt/${PN}
-	doexe QGet*
+	doexe Qget*
 
 	exeinto /opt/bin
 	doexe "${FILESDIR}/QGet"
