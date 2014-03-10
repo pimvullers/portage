@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-13.0_alpha3.ebuild,v 1.1 2013/05/23 21:23:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/xbmc/xbmc-13.0_beta1.ebuild,v 1.1 2013/05/23 21:23:51 vapier Exp $
 
 EAPI="5"
 
@@ -11,16 +11,14 @@ PYTHON_REQ_USE="sqlite"
 
 inherit eutils python-single-r1 multiprocessing autotools
 
-BACKPORTS_VERSION=1
-
 case ${PV} in
 9999)
 	EGIT_REPO_URI="git://github.com/xbmc/xbmc.git"
 	inherit git-2
-	SRC_URI="!java? ( mirror://gentoo/${P}-20130413-generated-addons.tar.xz )"
+	#SRC_URI="!java? ( mirror://gentoo/${P}-20130413-generated-addons.tar.xz )"
 	;;
 *_alpha*|*_beta*|*_rc*)
-	MY_PV="Gotham_${PV#*_}"
+	MY_PV="Gotham-${PV#*_}"
 	MY_P="${PN}-${MY_PV}"
 	SRC_URI="https://github.com/xbmc/xbmc/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
 		!java? ( mirror://gentoo/${P}-generated-addons.tar.xz )"
@@ -28,9 +26,8 @@ case ${PV} in
 	;;
 *)
 	MY_P=${P/_/-*_}
-	SRC_URI="http://mirrors.xbmc.org/releases/source/${MY_P}.tar.gz
-		mirror://gentoo/${PN}_backports-12-${BACKPORTS_VERSION}.tar.bz2"
-	KEYWORDS="amd64 x86"
+	SRC_URI="http://mirrors.xbmc.org/releases/source/${MY_P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
 	;;
 esac
 
@@ -94,7 +91,6 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	media-libs/tiff
 	pulseaudio? ( media-sound/pulseaudio )
 	media-sound/wavpack
-	|| ( >=media-video/ffmpeg-1.2.1:0=[encode] ( media-libs/libpostproc >=media-video/libav-10_alpha:=[encode] ) )
 	rtmp? ( media-video/rtmpdump )
 	avahi? ( net-dns/avahi )
 	nfs? ( net-fs/libnfs )
@@ -117,7 +113,6 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	vaapi? ( x11-libs/libva[opengl] )
 	vdpau? (
 		|| ( x11-libs/libvdpau >=x11-drivers/nvidia-drivers-180.51 )
-		|| ( >=media-video/ffmpeg-1.2.1:0=[vdpau] >=media-video/libav-10_alpha:=[vdpau] )
 	)
 	X? (
 		x11-apps/xdpyinfo
@@ -136,18 +131,14 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/cmake
 	x86? ( dev-lang/nasm )
 	java? ( virtual/jre )"
+# Force java for latest git version to avoid having to hand maintain the
+# generated addons package.  #488118
+[[ ${PV} == "9999" ]] && DEPEND+=" virtual/jre"
 
 S=${WORKDIR}/${MY_P}
 
 pkg_setup() {
 	python-single-r1_pkg_setup
-
-	if has_version 'media-video/libav' ; then
-		ewarn "Building ${PN} against media-video/libav is not supported upstream."
-		ewarn "It requires building a (small) wrapper library with some code"
-		ewarn "from media-video/ffmpeg."
-		ewarn "If you experience issues, please try with media-video/ffmpeg."
-	fi
 }
 
 src_unpack() {
@@ -198,7 +189,7 @@ src_prepare() {
 	epatch_user #293109
 
 	# Tweak autotool timestamps to avoid regeneration
-	find . -type f -print0 | xargs -0 touch -r configure
+	find . -type f -exec touch -r configure {} +
 }
 
 src_configure() {
@@ -209,14 +200,13 @@ src_configure() {
 	# No configure flage for this #403561
 	export ac_cv_lib_bluetooth_hci_devid=$(usex bluetooth)
 	# Requiring java is asine #434662
-	export ac_cv_path_JAVA_EXE=$(which $(usex java java true))
+	[[ ${PV} != "9999" ]] && export ac_cv_path_JAVA_EXE=$(which $(usex java java true))
 
 	econf \
 		--docdir=/usr/share/doc/${PF} \
 		--disable-ccache \
 		--disable-optimizations \
 		--enable-external-libraries \
-		$(has_version 'media-video/libav' && echo "--enable-libav-compat") \
 		--enable-gl \
 		$(use_enable airplay) \
 		$(use_enable avahi) \

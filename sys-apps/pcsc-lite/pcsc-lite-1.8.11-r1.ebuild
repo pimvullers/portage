@@ -1,6 +1,6 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.8.10.ebuild,v 1.1 2013/10/20 09:25:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/pcsc-lite-1.8.11-r1.ebuild,v 1.2 2014/02/17 21:06:35 swift Exp $
 
 EAPI="5"
 
@@ -9,7 +9,7 @@ inherit eutils autotools-multilib systemd udev user
 DESCRIPTION="PC/SC Architecture smartcard middleware library"
 HOMEPAGE="http://pcsclite.alioth.debian.org/"
 
-STUPID_NUM="3963"
+STUPID_NUM="3991"
 MY_P="${PN}-${PV/_/-}"
 SRC_URI="http://alioth.debian.org/download.php/file/${STUPID_NUM}/${MY_P}.tar.bz2"
 S="${WORKDIR}/${MY_P}"
@@ -23,12 +23,14 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 # This is called libusb so that it doesn't fool people in thinking that
 # it is _required_ for USB support. Otherwise they'll disable udev and
 # that's going to be worse.
-IUSE="libusb static-libs +udev"
+IUSE="libusb policykit selinux static-libs +udev"
 
 REQUIRED_USE="^^ ( udev libusb )"
 
 CDEPEND="libusb? ( virtual/libusb:1[${MULTILIB_USEDEP}] )
-	udev? ( virtual/udev[${MULTILIB_USEDEP}] )"
+	selinux? ( sec-policy/selinux-pcscd )
+	udev? ( virtual/udev[${MULTILIB_USEDEP}] )
+	policykit? ( >=sys-auth/polkit-0.111[${MULTILIB_USEDEP}] )"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}
@@ -42,6 +44,13 @@ pkg_setup() {
 	enewuser pcscd -1 -1 /run/pcscd pcscd,openct
 }
 
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-polkit-pcscd.patch
+	epatch "${FILESDIR}"/${P}-nopolkit.patch
+
+	eautoreconf
+}
+
 src_configure() {
 	local myeconfargs=(
 		--disable-maintainer-mode
@@ -51,6 +60,7 @@ src_configure() {
 		--enable-ipcdir=/run/pcscd
 		$(use_enable udev libudev)
 		$(use_enable libusb)
+		$(use_enable policykit polkit) \
 		"$(systemd_with_unitdir)"
 	)
 
@@ -62,10 +72,10 @@ DOCS=( AUTHORS DRIVERS HELP README SECURITY ChangeLog )
 src_install() {
 	autotools-multilib_src_install
 
-	newinitd "${FILESDIR}"/pcscd-init.6 pcscd
+	newinitd "${FILESDIR}"/pcscd-init.7 pcscd
 
 	if use udev; then
-		insinto "$(udev_get_udevdir)"/rules.d
+		insinto "$(get_udevdir)"/rules.d
 		doins "${FILESDIR}"/99-pcscd-hotplug.rules
 	fi
 }

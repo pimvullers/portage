@@ -15,9 +15,9 @@ SLOT="0"
 KEYWORDS=""
 IUSE="doc pcsc-lite readline static-libs usb"
 
-RDEPEND="pcsc-lite? ( sys-apps/pcsc-lite )
-	readline? ( sys-libs/readline )
-	usb? ( virtual/libusb:0 )"
+RDEPEND="pcsc-lite? ( sys-apps/pcsc-lite[${MULTILIB_USEDEP}] )
+	readline? ( sys-libs/readline[${MULTILIB_USEDEP}] )
+	usb? ( virtual/libusb:0[${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 

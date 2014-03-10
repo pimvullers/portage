@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils toolchain-funcs autotools-multilib
+inherit toolchain-funcs autotools-multilib
 
 DESCRIPTION="Near Field Communications (NFC) library"
 HOMEPAGE="http://www.libnfc.org/"
@@ -15,16 +15,16 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE="doc pcsc-lite readline static-libs usb"
 
-RDEPEND="pcsc-lite? ( sys-apps/pcsc-lite )
-	readline? ( sys-libs/readline )
-	usb? ( virtual/libusb:0 )"
+RDEPEND="pcsc-lite? ( sys-apps/pcsc-lite[${MULTILIB_USEDEP}] )
+	readline? ( sys-libs/readline[${MULTILIB_USEDEP}] )
+	usb? ( virtual/libusb:0[${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
 src_configure() {
-	local drivers="acr122s,arygon,pn532_i2c,pn532_spi,pn532_uart"
+	local drivers="arygon,pn532_uart,pn532_spi,pn532_i2c,acr122s"
 	use pcsc-lite && drivers+=",acr122_pcsc"
-	use usb && drivers+=",acr122_usb,pn53x_usb"
+	use usb && drivers+=",pn53x_usb,acr122_usb"
 	
 	local myeconfargs=(
 		--with-drivers="${drivers}"

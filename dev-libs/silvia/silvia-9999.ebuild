@@ -18,17 +18,17 @@ REQUIRED_USE="smartcard? ( || ( pcsc-lite libnfc ) )"
 
 LIB_DEPEND="
 	abi_x86_32? ( app-emulation/emul-linux-x86-baselibs )
-	=dev-libs/gmp-5*[cxx,static-libs(+)]
+	=dev-libs/gmp-5*[cxx,static-libs(+),${MULTILIB_USEDEP}]
 	dev-libs/openssl[static-libs(+)]
-	pcsc-lite? ( sys-apps/pcsc-lite[abi_x86_32(+),static-libs(+)] )
-	libnfc? ( dev-libs/libnfc[abi_x86_32(+),sstatic-libs(+)] )
-	xml? ( dev-libs/libxml2[static-libs(+)] )
-	sys-libs/zlib[static-libs(+)]"
+	pcsc-lite? ( sys-apps/pcsc-lite[static-libs(+),${MULTILIB_USEDEP}] )
+	libnfc? ( dev-libs/libnfc[static-libs(+),${MULTILIB_USEDEP}] )
+	xml? ( dev-libs/libxml2[static-libs(+),${MULTILIB_USEDEP}] )
+	sys-libs/zlib[static-libs(+),${MULTILIB_USEDEP}]"
 RDEPEND="
 	!static? ( ${LIB_DEPEND//\[static-libs(+)]} )"
 DEPEND="${RDEPEND}
 	static? ( ${LIB_DEPEND} )
-	test? ( dev-util/cppunit[abi_x86_32(+)]	)"
+	test? ( dev-util/cppunit[${MULTILIB_USEDEP}]	)"
 
 AUTOTOOLS_AUTORECONF=1
 
