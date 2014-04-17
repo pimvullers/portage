@@ -18,7 +18,7 @@ REQUIRED_USE="smartcard? ( || ( pcsc-lite libnfc ) )"
 
 LIB_DEPEND="
 	abi_x86_32? ( app-emulation/emul-linux-x86-baselibs )
-	=dev-libs/gmp-5*[cxx,static-libs(+),${MULTILIB_USEDEP}]
+	>=dev-libs/gmp-5[cxx,static-libs(+),${MULTILIB_USEDEP}]
 	dev-libs/openssl[static-libs(+)]
 	pcsc-lite? ( sys-apps/pcsc-lite[static-libs(+),${MULTILIB_USEDEP}] )
 	libnfc? ( dev-libs/libnfc[static-libs(+),${MULTILIB_USEDEP}] )
