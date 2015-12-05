@@ -4,9 +4,9 @@
 
 EAPI=5
 
-DESCRIPTION="QNAP Turbo NAS installation/configuration tool"
+DESCRIPTION="QNAP Turbo NAS download management tool"
 HOMEPAGE="http://www.qnap.com/"
-SRC_URI="http://download.qnap.com/Storage/Utility/QNAPQfinderLinux-${PV}.tar.gz"
+SRC_URI="http://download.qnap.com/Storage/Utility/QNAPQgetLinux-${PV}.tar.gz"
 
 LICENSE=""
 SLOT="0"
@@ -21,16 +21,18 @@ RDEPEND="
 	app-emulation/emul-linux-x86-xlibs"
 
 pkg_setup() {
-	S="${WORKDIR}/Qfinder"
+	S="${WORKDIR}/Qget"
 }
 
 src_install() {
+	dodoc -r help/*
+
 	insinto /opt/${PN}
 	doins -r res
 
 	exeinto /opt/${PN}
-	doexe Qfinder*
+	doexe Qget*
 
 	exeinto /opt/bin
-	doexe "${FILESDIR}/QFinder"
+	doexe "${FILESDIR}/QGet"
 }

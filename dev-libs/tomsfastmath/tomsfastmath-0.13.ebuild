@@ -6,7 +6,7 @@ EAPI=5
 
 DESCRIPTION="TomsFastMath is a fast public domain, open source, large integer arithmetic library written in portable ISO C"
 HOMEPAGE="http://libtom.org/"
-SRC_URI="http://libtom.org/files/tfm-${PV}.tar.bz2"
+SRC_URI="https://github.com/libtom/${PN}/releases/download/v0.13.0/tfm-${PV}.tar.bz2"
 
 LICENSE="public-domain"
 SLOT="0"
