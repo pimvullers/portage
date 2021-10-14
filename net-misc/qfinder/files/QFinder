@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[[ -x /opt/qfinder/QFinder.release ]] && (cd /opt/qfinder && ./QFinder.release > /dev/null 2>&1) && exit
-
-[[ -x /opt/qfinder/Qfinder.release ]] && (cd /opt/qfinder && ./Qfinder.release > /dev/null 2>&1) && exit
-
-echo "QFinder executable not found."
