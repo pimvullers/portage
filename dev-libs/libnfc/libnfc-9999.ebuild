@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit eutils toolchain-funcs autotools-multilib git-2
+inherit eutils toolchain-funcs autotools git-r3
 
 DESCRIPTION="Near Field Communications (NFC) library"
 HOMEPAGE="http://www.libnfc.org/"
@@ -26,7 +26,7 @@ AUTOTOOLS_AUTORECONF=1
 src_prepare() {
 	sed -i -e 's/1.7.0-rc7/1.7.0-rc8/' configure.ac
 
-	autotools-multilib_src_prepare
+	autotools_src_prepare
 }
 
 src_configure() {
@@ -37,24 +37,24 @@ src_configure() {
 	local drivers="acr122s,arygon,pn532_i2c,pn532_spi,pn532_uart"
 	use pcsc-lite && drivers+=",acr122_pcsc"
 	use usb && drivers+=",acr122_usb,pn53x_usb"
-	
+
 	local myeconfargs=(
 		--with-drivers="${drivers}"
 		$(use_enable doc)
 		$(use_with readline)
 	)
 
-	autotools-multilib_src_configure
+	autotools_src_configure
 }
 
 src_compile() {
-	autotools-multilib_src_compile
+	autotools_src_compile
 
 	use doc && doxygen
 }
 
 src_install() {
-	autotools-multilib_src_install
+	autotools_src_install
 
 	use doc && dohtml "${S}"/doc/html/*
 }

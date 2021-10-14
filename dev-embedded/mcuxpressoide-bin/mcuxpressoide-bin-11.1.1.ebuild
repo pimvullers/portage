@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit fdo-mime
+inherit xdg
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
@@ -59,6 +59,8 @@ src_prepare() {
 		-e "s#/usr/local/${P_BUILD}#/opt/nxp/mcuxpressoide#g" \
 		-e "s#${PN} ${PV}_${BUILDNR}#MCUXpresso#g" \
 		usr/share/applications/*.desktop
+
+	xdg_src_prepare
 }
 
 src_install() {
@@ -79,9 +81,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	fdo-mime_desktop_database_update
+	xdg_pkg_postinst
 }
 
 pkg_postrm() {
-	fdo-mime_desktop_database_update
+	xdg_pkg_postrm
 }
