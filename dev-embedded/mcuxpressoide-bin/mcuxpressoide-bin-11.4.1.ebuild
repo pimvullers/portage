@@ -3,11 +3,11 @@
 
 EAPI=7
 
-inherit fdo-mime
+inherit xdg-utils
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
-BUILDNR="2516"
+BUILDNR="6260"
 P_BUILD="mcuxpressoide-${PV}_${BUILDNR}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
@@ -24,8 +24,8 @@ QA_PREBUILT="*"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	app-mobilephone/dfu-util
-	sys-libs/ncurses:5[tinfo]"
+	app-mobilephone/dfu-util"
+#	sys-libs/ncurses:5[tinfo]"
 BDEPEND=""
 
 pkg_nofetch() {
@@ -79,9 +79,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	fdo-mime_desktop_database_update
+	xdg_desktop_database_update
 }
 
 pkg_postrm() {
-	fdo-mime_desktop_database_update
+	xdg_desktop_database_update
 }
