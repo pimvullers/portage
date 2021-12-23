@@ -20,7 +20,7 @@ RESTRICT="strip"
 QA_PREBUILT="*"
 
 DEPEND=""
-RDEPEND="sys-libs/ncurses-compat
+RDEPEND="sys-libs/ncurses-compat:5[tinfo]
 	dev-lang/python:2.7"
 
 S="${WORKDIR}/${PN}-${MY_PV}"

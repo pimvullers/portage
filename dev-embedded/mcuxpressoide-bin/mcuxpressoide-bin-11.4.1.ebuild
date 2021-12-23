@@ -24,8 +24,8 @@ QA_PREBUILT="*"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	app-mobilephone/dfu-util"
-#	sys-libs/ncurses:5[tinfo]"
+	app-mobilephone/dfu-util
+	sys-libs/ncurses-compat:5[tinfo]"
 BDEPEND=""
 
 pkg_nofetch() {
