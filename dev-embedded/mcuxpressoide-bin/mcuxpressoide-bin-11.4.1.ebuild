@@ -7,7 +7,7 @@ inherit xdg
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
-BUILDNR="3241"
+BUILDNR="6260"
 P_BUILD="mcuxpressoide-${PV}_${BUILDNR}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
@@ -24,8 +24,8 @@ QA_PREBUILT="*"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	app-mobilephone/dfu-util
-	sys-libs/ncurses:5[tinfo]"
+	app-mobilephone/dfu-util"
+#	sys-libs/ncurses:5[tinfo]"
 BDEPEND=""
 
 pkg_nofetch() {

@@ -5,7 +5,7 @@ EAPI=7
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://www.nxp.com/support/developer-resources/microcontrollers-developer-resources/lpc-microcontroller-utilities/lpcscrypt-v2.1.0:LPCSCRYPT"
-BUILDNR="842"
+BUILDNR="57"
 P_BUILD="lpcscrypt-${PV}_${BUILDNR}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
