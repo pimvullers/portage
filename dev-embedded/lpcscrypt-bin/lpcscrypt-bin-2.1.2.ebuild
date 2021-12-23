@@ -10,20 +10,33 @@ P_BUILD="lpcscrypt-${PV}_${BUILDNR}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
 P_FILE="${P_DEB}.bin"
-SRC_URI="https://www.nxp.com/downloads/en/software/${P_FILE}"
+SRC_URI="https://cache.nxp.com/secured/assets/downloads/en/software/${P_FILE}"
 
 LICENSE="NXP_LA_OPT_TOOL"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="udev"
 
-RESTRICT="preserve-libs strip"
+RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
 DEPEND=""
 RDEPEND="${DEPEND}
 	sys-apps/util-linux"
 BDEPEND=""
+
+pkg_nofetch() {
+	einfo "Please download ${P_FILE}"
+	einfo "and move it to your distfiles directory:"
+	einfo
+	einfo "  https://www.nxp.com/design/microcontrollers-developer-resources/lpcscrypt-v2-1-2:LPCSCRYPT?tab=Design_Tools_Tab"
+	einfo
+	einfo "If the above mentioned URL does not point to the correct version anymore,"
+	einfo "please download the file from NXP's LPCScrypt download site:"
+	einfo
+	einfo "  ${HOMEPAGE}"
+	einfo
+}
 
 src_unpack() {
 	sh "${DISTDIR}/${P_FILE}" --noprogress --noexec --target "${S}" || die
