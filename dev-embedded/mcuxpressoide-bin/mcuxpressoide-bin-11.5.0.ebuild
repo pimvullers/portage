@@ -7,7 +7,7 @@ inherit xdg
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
-BUILDNR="6260"
+BUILDNR="7232"
 P_BUILD="mcuxpressoide-${PV}_${BUILDNR}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
