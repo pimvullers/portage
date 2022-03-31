@@ -16,7 +16,8 @@ RESTRICT="strip"
 QA_PREBUILT="*"
 
 DEPEND=""
-RDEPEND=""
+RDEPEND="
+	virtual/libcrypt:="
 
 S="${WORKDIR}/xpack-riscv-none-embed-gcc-10.2.0-1.2"
 
@@ -30,7 +31,7 @@ src_install() {
 	cat > "${T}/env" << EOF
 PATH=${DEST}/bin
 ROOTPATH=${DEST}/bin
-LDPATH=${DEST}/lib
+LDPATH="${DEST}/lib:${DEST}/libexec"
 EOF
 	newenvd "${T}/env" 99gcc-riscv-embedded-bin
 }
