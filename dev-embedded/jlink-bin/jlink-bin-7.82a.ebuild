@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit udev user
+inherit udev
 
 DESCRIPTION="Tools for Segger J-Link JTAG adapters"
 HOMEPAGE="https://www.segger.com/downloads/jlink/"
@@ -18,7 +18,8 @@ RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	acct-group/plugdev"
 
 S=${WORKDIR}/"JLink_Linux_V${PV/\./}_x86_64"
 
@@ -135,7 +136,6 @@ src_install() {
 
 pkg_postinst() {
 	udev_reload
-	enewgroup plugdev
 	elog "To be able to access the jlink usb adapter, you have to be"
 	elog "a member of the 'plugdev' group."
 }
