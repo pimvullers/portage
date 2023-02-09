@@ -24,6 +24,7 @@ QA_PREBUILT="*"
 
 DEPEND=""
 RDEPEND="${DEPEND}
+	dev-libs/libusb-compat
 	app-mobilephone/dfu-util
 	sys-libs/ncurses-compat:5[tinfo]
 	dev-lang/python:2.7"
