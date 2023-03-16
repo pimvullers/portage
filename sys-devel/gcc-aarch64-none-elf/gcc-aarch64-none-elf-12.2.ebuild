@@ -1,16 +1,14 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-MY_PV="$(ver_cut 1).$(ver_cut 2)-$(ver_cut 3).$(ver_cut 4)"
+MY_PV="${PV}.rel1"
 
 DESCRIPTION="GNU Arm Embedded Toolchain"
 HOMEPAGE="https://developer.arm.com/open-source/gnu-toolchain/gnu-rm"
 
-SRC_PREFIX="https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm"
-SRC_URI="amd64? ( ${SRC_PREFIX}/${MY_PV}/gcc-arm-none-eabi-${MY_PV}-x86_64-linux.tar.bz2 )
-	arm64? ( ${SRC_PREFIX}/${MY_PV}/gcc-arm-none-eabi-${MY_PV}-aarch64-linux.tar.bz2 )"
+SRC_URI="https://developer.arm.com/-/media/Files/downloads/gnu/${MY_PV}/binrel/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf.tar.xz"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
@@ -20,10 +18,9 @@ RESTRICT="strip"
 QA_PREBUILT="*"
 
 DEPEND=""
-RDEPEND="sys-libs/ncurses-compat:5[tinfo]
-	dev-lang/python:2.7"
+RDEPEND="sys-libs/ncurses-compat:5[tinfo]"
 
-S="${WORKDIR}/${PN}-${MY_PV}"
+S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf"
 
 src_install() {
 	local DEST=/opt/${PN}
@@ -36,9 +33,9 @@ src_install() {
 PATH=${DEST}/bin
 ROOTPATH=${DEST}/bin
 LDPATH=${DEST}/lib
-MANPATH=${DEST}/share/doc/arm-arm-none-eabi/man
+MANPATH=${DEST}/share/man
 EOF
-	newenvd "${T}/env" 99gcc-arm-embedded-bin
+	newenvd "${T}/env" 99gcc-aarch64-embedded-bin
 }
 
 pkg_postinst() {

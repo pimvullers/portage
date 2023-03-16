@@ -6,7 +6,7 @@ EAPI=7
 DESCRIPTION="GNU RISC-V Embedded GCC"
 HOMEPAGE="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack"
 
-SRC_URI="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v12.2.0-1/xpack-riscv-none-elf-gcc-12.2.0-1-linux-x64.tar.gz"
+SRC_URI="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v12.2.0-3/xpack-riscv-none-elf-gcc-12.2.0-3-linux-x64.tar.gz"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
@@ -20,7 +20,7 @@ DEPEND="
 RDEPEND="
 	virtual/libcrypt:="
 
-S="${WORKDIR}/xpack-riscv-none-elf-gcc-12.2.0-1"
+S="${WORKDIR}/xpack-riscv-none-elf-gcc-12.2.0-3"
 
 src_install() {
 	local DEST=/opt/${PN}
