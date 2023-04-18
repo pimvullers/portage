@@ -1,4 +1,4 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -7,12 +7,12 @@ inherit udev xdg
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
-BUILDNR="8255"
+BUILDNR="9221"
 P_BUILD="mcuxpressoide-${PV}_${BUILDNR}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
 P_FILE="${P_DEB}.bin"
-SRC_URI="https://freescaleesd.flexnetoperations.com/337170/387/14523387/${P_FILE}"
+SRC_URI="https://freescaleesd.flexnetoperations.com/337170/377/19887377/${P_FILE}"
 
 LICENSE="NXP_LA_OPT_TOOL"
 SLOT="0"
