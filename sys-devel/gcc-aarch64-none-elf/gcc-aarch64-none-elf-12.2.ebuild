@@ -17,7 +17,7 @@ IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
 
-DEPEND=""
+DEPEND="virtual/libcrypt:="
 RDEPEND="sys-libs/ncurses-compat:5[tinfo]"
 
 S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf"

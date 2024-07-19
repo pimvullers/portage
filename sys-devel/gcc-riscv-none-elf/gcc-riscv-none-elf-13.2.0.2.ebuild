@@ -3,12 +3,12 @@
 
 EAPI=7
 
-MY_PV="${PV}.rel1"
+MY_PV=$(ver_rs 3 -)
 
-DESCRIPTION="GNU Arm Embedded Toolchain"
-HOMEPAGE="https://developer.arm.com/open-source/gnu-toolchain/gnu-rm"
+DESCRIPTION="GNU RISC-V Embedded GCC"
+HOMEPAGE="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack"
 
-SRC_URI="https://developer.arm.com/-/media/Files/downloads/gnu/${MY_PV}/binrel/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf.tar.xz"
+SRC_URI="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v${MY_PV}/xpack-riscv-none-elf-gcc-${MY_PV}-linux-x64.tar.gz"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
@@ -17,10 +17,12 @@ IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
 
-DEPEND="virtual/libcrypt:="
-RDEPEND="sys-libs/ncurses-compat:5[tinfo]"
+DEPEND="
+	!sys-devel/gcc-riscv-none-embed"
+RDEPEND="
+	virtual/libcrypt:="
 
-S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf"
+S="${WORKDIR}/xpack-riscv-none-elf-gcc-${MY_PV}"
 
 src_install() {
 	local DEST=/opt/${PN}
@@ -32,10 +34,9 @@ src_install() {
 	cat > "${T}/env" << EOF
 PATH=${DEST}/bin
 ROOTPATH=${DEST}/bin
-LDPATH=${DEST}/lib
-MANPATH=${DEST}/share/man
+LDPATH="${DEST}/lib:${DEST}/libexec"
 EOF
-	newenvd "${T}/env" 99gcc-aarch64-embedded-bin
+	newenvd "${T}/env" 99gcc-riscv-none-elf-bin
 }
 
 pkg_postinst() {

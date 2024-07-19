@@ -3,10 +3,12 @@
 
 EAPI=7
 
-DESCRIPTION="GNU RISC-V Embedded GCC"
-HOMEPAGE="https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack"
+MY_PV=$(ver_rs 3 -)
 
-SRC_URI="https://github.com/xpack-dev-tools/riscv-none-embed-gcc-xpack/releases/download/v10.2.0-1.2/xpack-riscv-none-embed-gcc-10.2.0-1.2-linux-x64.tar.gz"
+DESCRIPTION="GNU RISC-V Embedded GCC"
+HOMEPAGE="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack"
+
+SRC_URI="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v${MY_PV}/xpack-riscv-none-elf-gcc-${MY_PV}-linux-x64.tar.gz"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
@@ -15,11 +17,12 @@ IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
 
-DEPEND=""
+DEPEND="
+	!sys-devel/gcc-riscv-none-embed"
 RDEPEND="
 	virtual/libcrypt:="
 
-S="${WORKDIR}/xpack-riscv-none-embed-gcc-10.2.0-1.2"
+S="${WORKDIR}/xpack-riscv-none-elf-gcc-${MY_PV}"
 
 src_install() {
 	local DEST=/opt/${PN}
@@ -33,7 +36,7 @@ PATH=${DEST}/bin
 ROOTPATH=${DEST}/bin
 LDPATH="${DEST}/lib:${DEST}/libexec"
 EOF
-	newenvd "${T}/env" 99gcc-riscv-embedded-bin
+	newenvd "${T}/env" 99gcc-riscv-none-elf-bin
 }
 
 pkg_postinst() {
