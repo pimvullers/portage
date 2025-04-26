@@ -10,5 +10,5 @@ RDEPEND=acct-group/plugdev
 RESTRICT=fetch preserve-libs strip
 SLOT=0
 SRC_URI=https://www.segger.com/downloads/jlink/JLink_Linux_V784f_x86_64.tgz
-_eclasses_=toolchain-funcs	e56c7649b804f051623c8bc1a1c44084	multilib	c19072c3cd7ac5cb21de013f7e9832e0	udev	eec0bbab06977f1cfc5597269c1fa152
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	udev	f3d9a4376ebd22131726a68e1a0a058f
 _md5_=5e2005c2b1e8edfd5db44c05b422f3a4
