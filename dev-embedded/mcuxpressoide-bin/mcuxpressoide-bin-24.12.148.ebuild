@@ -7,12 +7,11 @@ inherit udev xdg
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
-BUILDNR="9221"
-P_BUILD="mcuxpressoide-${PV}_${BUILDNR}"
+P_BUILD="mcuxpressoide-${PV}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
 P_FILE="${P_DEB}.bin"
-SRC_URI="https://freescaleesd.flexnetoperations.com/337170/377/19887377/${P_FILE}"
+SRC_URI="https://freescaleesd.flexnetoperations.com/337170/901/13309901/${P_FILE}"
 
 LICENSE="NXP_LA_OPT_TOOL"
 SLOT="0"
@@ -27,7 +26,8 @@ RDEPEND="${DEPEND}
 	dev-libs/libusb-compat
 	app-mobilephone/dfu-util
 	sys-libs/ncurses-compat:5[tinfo]
-	dev-lang/python:2.7"
+	dev-lang/python:2.7
+	virtual/libcrypt:="
 BDEPEND=""
 
 pkg_nofetch() {

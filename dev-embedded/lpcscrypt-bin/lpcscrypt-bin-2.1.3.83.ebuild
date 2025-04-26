@@ -1,16 +1,19 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
-HOMEPAGE="https://www.nxp.com/support/developer-resources/microcontrollers-developer-resources/lpc-microcontroller-utilities/lpcscrypt-v2.1.0:LPCSCRYPT"
-BUILDNR="57"
-P_BUILD="lpcscrypt-${PV}_${BUILDNR}"
+inherit udev
+
+DESCRIPTION="Tool for programming the latest versions of CMSIS-DAP and J-Link firmware onto boards with Link2/LPC-Link2 debug probes"
+HOMEPAGE="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/lpcscrypt:LPCSCRYPT"
+MY_PV=$(ver_rs 3 _)
+LINKSERVER_PV="25.3.31"
+P_BUILD="LinkServer_${LINKSERVER_PV}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"
 P_FILE="${P_DEB}.bin"
-SRC_URI="https://cache.nxp.com/secured/assets/downloads/en/software/${P_FILE}"
+SRC_URI="https://cache.nxp.com/secured/updates/linker/${P_FILE}?fileExt=.bin -> ${P_FILE}"
 
 LICENSE="NXP_LA_OPT_TOOL"
 SLOT="0"
@@ -29,10 +32,10 @@ pkg_nofetch() {
 	einfo "Please download ${P_FILE}"
 	einfo "and move it to your distfiles directory:"
 	einfo
-	einfo "  https://www.nxp.com/design/microcontrollers-developer-resources/lpcscrypt-v2-1-2:LPCSCRYPT?tab=Design_Tools_Tab"
+	einfo "  https://www.nxp.com/webapp/Download?colCode=LINKER-SERVER-LINUX"
 	einfo
 	einfo "If the above mentioned URL does not point to the correct version anymore,"
-	einfo "please download the file from NXP's LPCScrypt download site:"
+	einfo "please download the file from NXP's LinkServer download site:"
 	einfo
 	einfo "  ${HOMEPAGE}"
 	einfo
@@ -43,8 +46,8 @@ src_unpack() {
 
 	pushd "${S}" > /dev/null
 
-	"${FILESDIR}/deb2targz" ${P_DEB} || die
-	unpack "${S}/${P_TGZ}" || die
+	"${FILESDIR}/deb2targz" LPCScrypt.deb || die
+	unpack "${S}/LPCScrypt.tar.gz" || die
 
 	popd > /dev/null
 }
@@ -56,10 +59,18 @@ src_install() {
 	fi
 
 	dodir /opt/nxp/lpcscrypt
-	cp -pPR "usr/local/${P_BUILD}"/* "${ED}/opt/nxp/lpcscrypt/"
+	cp -pPR "usr/local/lpcscrypt-${MY_PV}"/* "${ED}/opt/nxp/lpcscrypt/"
 
 	cp "${FILESDIR}"/Firmware_JLink_LPC-Link2_*.bin "${ED}/opt/nxp/lpcscrypt/probe_firmware/LPCLink2/"
 	cp "${FILESDIR}"/Firmware_JLink_LPCXpressoV2_*.bin "${ED}/opt/nxp/lpcscrypt/probe_firmware/LPCXpressoV2/"
 
 	dosym ../../opt/nxp/lpcscrypt/bin/lpcscrypt /usr/bin/lpcscrypt
+}
+
+pkg_postinst() {
+	udev_reload
+}
+
+pkg_postrm() {
+	udev_reload
 }

@@ -19,7 +19,7 @@ SLOT="0"
 KEYWORDS="amd64"
 
 RDEPEND="
-	dev-python/PyQt6
+	dev-python/pyqt6
 	dev-python/filebytes
 	dev-python/pyelftools
 "
