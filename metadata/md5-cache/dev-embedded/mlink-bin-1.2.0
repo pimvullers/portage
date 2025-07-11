@@ -1,0 +1,10 @@
+DEFINED_PHASES=install nofetch unpack
+DESCRIPTION=mBlock web version driver
+EAPI=7
+HOMEPAGE=https://mblock.cc/pages/downloads
+KEYWORDS=~amd64
+LICENSE=freedist
+RESTRICT=fetch preserve-libs strip
+SLOT=0
+SRC_URI=https://dls-cdn.makeblock.com/download-site/mblock5/linux/mLink-1.2.0-amd64.deb
+_md5_=f5ce259ca4746e90ab97696d82af6335
