@@ -1,9 +1,12 @@
-DEFINED_PHASES=install
+DEFINED_PHASES=install postinst postrm preinst
 DESCRIPTION=IDE for the Arduino platform
 EAPI=8
 HOMEPAGE=https://www.arduino.cc/
+IDEPEND=dev-util/desktop-file-utils x11-misc/shared-mime-info
+INHERIT=xdg
 KEYWORDS=~amd64
 LICENSE=AGPL-3
 SLOT=2
 SRC_URI=https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.6_Linux_64bit.zip
-_md5_=98e4b7ab2f35db46c3f8516425cb2aaa
+_eclasses_=xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
+_md5_=2b87afd954d0aa265022af4d709efbbd
