@@ -10,7 +10,6 @@ HOMEPAGE="https://arduino.github.io/arduino-cli/latest/"
 SRC_URI="
 	https://github.com/arduino/arduino-cli/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 "
-	#https://pkg.artemis.sh/gentoo/pkg-deps/dev-embedded/arduino-cli/${P}-vendor.tar.xz
 
 LICENSE="Apache-2.0 BSD BSD-2 GPL-2 GPL-3 LGPL-3 MIT MPL-2.0"
 SLOT="0"
