@@ -11,7 +11,7 @@ SRC_URI="https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.6_Linux_64bit.
 
 LICENSE="AGPL-3"
 SLOT="2"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
