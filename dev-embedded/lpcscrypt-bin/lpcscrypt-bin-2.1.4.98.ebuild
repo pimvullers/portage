@@ -8,7 +8,7 @@ inherit udev
 DESCRIPTION="Tool for programming the latest versions of CMSIS-DAP and J-Link firmware onto boards with Link2/LPC-Link2 debug probes"
 HOMEPAGE="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/lpcscrypt:LPCSCRYPT"
 MY_PV=$(ver_rs 3 _)
-LINKSERVER_PV="25.3.31"
+LINKSERVER_PV="25.12.83"
 P_BUILD="LinkServer_${LINKSERVER_PV}"
 P_TGZ="${P_BUILD}.x86_64.tar.gz"
 P_DEB="${P_BUILD}.x86_64.deb"

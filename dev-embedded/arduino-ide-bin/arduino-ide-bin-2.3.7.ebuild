@@ -7,7 +7,7 @@ inherit xdg
 
 DESCRIPTION="IDE for the Arduino platform"
 HOMEPAGE="https://www.arduino.cc/"
-SRC_URI="https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.6_Linux_64bit.zip"
+SRC_URI="https://downloads.arduino.cc/arduino-ide/arduino-ide_${PV}_Linux_64bit.zip"
 
 LICENSE="AGPL-3"
 SLOT="2"
