@@ -6,5 +6,5 @@ KEYWORDS=amd64
 LICENSE=BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB
 RESTRICT=strip
 SLOT=0
-SRC_URI=https://github.com/espressif/crosstool-NG/releases/download/esp-14.2.0_20241119/xtensa-esp-elf-14.2.0_20241119-x86_64-linux-gnu.tar.xz
+SRC_URI=https://github.com/espressif/crosstool-NG/releases/download/esp-15.2.0_20251204/xtensa-esp-elf-15.2.0_20251204-x86_64-linux-gnu.tar.xz
 _md5_=615ced88845c6022de6f8982550094c2

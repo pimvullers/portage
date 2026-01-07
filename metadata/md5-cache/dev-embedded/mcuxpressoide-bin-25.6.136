@@ -11,6 +11,6 @@ LICENSE=NXP_LA_OPT_TOOL
 RDEPEND=dev-libs/libusb-compat app-mobilephone/dfu-util sys-libs/ncurses-compat:5[tinfo] dev-lang/python:2.7 virtual/libcrypt:=
 RESTRICT=fetch preserve-libs strip
 SLOT=0
-SRC_URI=https://freescaleesd.flexnetoperations.com/337170/901/13309901/mcuxpressoide-24.12.148.x86_64.deb.bin
+SRC_URI=https://freescaleesd.flexnetoperations.com/337170/901/13309901/mcuxpressoide-25.6.136.x86_64.deb.bin
 _eclasses_=desktop	7b6f6e9d65093966fbc8475399c5dd4e	toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3	udev	f3d9a4376ebd22131726a68e1a0a058f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
 _md5_=d7bb7f79e0cda884dcfa61eaeb3413a5

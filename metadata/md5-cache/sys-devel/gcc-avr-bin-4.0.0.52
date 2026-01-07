@@ -6,5 +6,5 @@ KEYWORDS=amd64
 LICENSE=BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB
 RESTRICT=strip
 SLOT=0
-SRC_URI=https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/avr8-gnu-toolchain-3.7.0.1796-linux.any.x86_64.tar.gz
+SRC_URI=https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/avr8-gnu-toolchain-4.0.0.52-linux.any.x86_64.tar.gz
 _md5_=c484c43581996f3944eba6f818743916
