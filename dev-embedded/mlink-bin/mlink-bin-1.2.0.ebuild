@@ -16,6 +16,8 @@ LICENSE="freedist"
 SLOT="0"
 KEYWORDS="~amd64"
 
+BDEPEND="
+	app-arch/deb2targz"
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
@@ -32,7 +34,7 @@ src_unpack() {
 
 	pushd "${WORKDIR}" > /dev/null
 
-	"${FILESDIR}/deb2targz" ${P_DEB} || die
+	deb2targz ${P_DEB} || die
 	unpack "${WORKDIR}/${P_TGZ}" || die
 
 	popd > /dev/null

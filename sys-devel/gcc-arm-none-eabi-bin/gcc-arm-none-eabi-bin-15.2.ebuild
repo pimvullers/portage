@@ -18,7 +18,9 @@ RESTRICT="strip"
 QA_PREBUILT="*"
 
 DEPEND="virtual/libcrypt:="
-RDEPEND="sys-libs/ncurses[tinfo]"
+RDEPEND="${DEPEND}
+	sys-libs/ncurses[tinfo]
+	dev-lang/python:3.8"
 
 src_install() {
 	local DEST=/opt/${PN}

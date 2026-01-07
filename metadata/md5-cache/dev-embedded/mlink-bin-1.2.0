@@ -1,3 +1,4 @@
+BDEPEND=app-arch/deb2targz
 DEFINED_PHASES=install nofetch unpack
 DESCRIPTION=mBlock web version driver
 EAPI=7
@@ -7,4 +8,4 @@ LICENSE=freedist
 RESTRICT=fetch preserve-libs strip
 SLOT=0
 SRC_URI=https://dls-cdn.makeblock.com/download-site/mblock5/linux/mLink-1.2.0-amd64.deb
-_md5_=fe94d7ad4168d6062c74d7eb65abf7ba
+_md5_=55283cc1d13dd362166f963deae38cbc
