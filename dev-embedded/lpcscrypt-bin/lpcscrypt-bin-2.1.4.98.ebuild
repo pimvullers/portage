@@ -5,7 +5,7 @@ EAPI=7
 
 inherit udev
 
-DESCRIPTION="Tool for programming the latest versions of CMSIS-DAP and J-Link firmware onto boards with Link2/LPC-Link2 debug probes"
+DESCRIPTION="Tool for programming firmware onto NXP Link2/LPC-Link2 debug probes"
 HOMEPAGE="https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/lpcscrypt:LPCSCRYPT"
 MY_PV=$(ver_rs 3 _)
 LINKSERVER_PV="25.12.83"
@@ -23,10 +23,10 @@ IUSE="udev"
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
-DEPEND=""
-RDEPEND="${DEPEND}
+RDEPEND="
 	sys-apps/util-linux"
-BDEPEND=""
+BDEPEND="
+	app-arch/deb2targz"
 
 pkg_nofetch() {
 	einfo "Please download ${P_FILE}"
@@ -46,7 +46,7 @@ src_unpack() {
 
 	pushd "${S}" > /dev/null
 
-	"${FILESDIR}/deb2targz" LPCScrypt.deb || die
+	deb2targz LPCScrypt.deb || die
 	unpack "${S}/LPCScrypt.tar.gz" || die
 
 	popd > /dev/null

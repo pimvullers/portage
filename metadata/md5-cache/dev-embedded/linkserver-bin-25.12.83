@@ -1,3 +1,4 @@
+BDEPEND=app-arch/deb2targz
 DEFINED_PHASES=install nofetch unpack
 DESCRIPTION=Utility for launching and managing GDB servers for NXP debug probes
 EAPI=7
@@ -9,4 +10,4 @@ RDEPEND=sys-apps/util-linux
 RESTRICT=fetch preserve-libs strip
 SLOT=0
 SRC_URI=https://cache.nxp.com/secured/updates/linker/LinkServer_25.12.83.x86_64.deb.bin?fileExt=.bin -> LinkServer_25.12.83.x86_64.deb.bin
-_md5_=c9a10e5f8d6581ff2b8e39cfb78073d3
+_md5_=edf3b59e6621822dddd7bf7d29eea95c

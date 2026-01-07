@@ -1,6 +1,6 @@
-BDEPEND=virtual/pkgconfig
+BDEPEND=app-arch/deb2targz virtual/pkgconfig
 DEFINED_PHASES=install nofetch postinst postrm unpack
-DESCRIPTION=Tool for programming the latest versions of CMSIS-DAP and J-Link firmware onto boards with Link2/LPC-Link2 debug probes
+DESCRIPTION=Tool for programming firmware onto NXP Link2/LPC-Link2 debug probes
 EAPI=7
 HOMEPAGE=https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/lpcscrypt:LPCSCRYPT
 INHERIT=udev
@@ -12,4 +12,4 @@ RESTRICT=fetch preserve-libs strip
 SLOT=0
 SRC_URI=https://cache.nxp.com/secured/updates/linker/LinkServer_25.12.83.x86_64.deb.bin?fileExt=.bin -> LinkServer_25.12.83.x86_64.deb.bin
 _eclasses_=toolchain-funcs	30214924c0c3b92ec7dbf24fc70d60d3	udev	f3d9a4376ebd22131726a68e1a0a058f
-_md5_=530fcbb6da283bbe81bff83bfee825b0
+_md5_=f3b07cf35c5063f0fdf24073edec0f87

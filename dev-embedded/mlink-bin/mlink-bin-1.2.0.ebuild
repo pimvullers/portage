@@ -10,17 +10,14 @@ P_TGZ="${P_BUILD}-amd64.tar.xz"
 P_DEB="${P_BUILD}-amd64.deb"
 SRC_URI="https://dls-cdn.makeblock.com/download-site/mblock5/linux/${P_DEB}"
 
+S="${WORKDIR}"
+
 LICENSE="freedist"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
-
-DEPEND=""
-RDEPEND="${DEPEND}"
-BDEPEND=""
 
 pkg_nofetch() {
 	einfo "Please download ${P_DEB}"
@@ -29,8 +26,6 @@ pkg_nofetch() {
 	einfo "  https://mblock.makeblock.com/en/download/mlink/"
 	einfo
 }
-
-S="${WORKDIR}"
 
 src_unpack() {
 	cp "${DISTDIR}/${P_DEB}" "${WORKDIR}" || die

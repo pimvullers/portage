@@ -7,22 +7,18 @@ MY_PV=$(ver_rs 3 -)
 
 DESCRIPTION="GNU RISC-V Embedded GCC"
 HOMEPAGE="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack"
-
 SRC_URI="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v${MY_PV}/xpack-riscv-none-elf-gcc-${MY_PV}-linux-x64.tar.gz"
+
+S="${WORKDIR}/xpack-riscv-none-elf-gcc-${MY_PV}"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
 
-DEPEND="
-	!sys-devel/gcc-riscv-none-embed"
 RDEPEND="
 	virtual/libcrypt:="
-
-S="${WORKDIR}/xpack-riscv-none-elf-gcc-${MY_PV}"
 
 src_install() {
 	local DEST=/opt/${PN}

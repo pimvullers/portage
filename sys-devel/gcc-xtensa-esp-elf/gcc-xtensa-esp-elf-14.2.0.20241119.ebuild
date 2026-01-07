@@ -7,20 +7,15 @@ MY_PV=$(ver_rs 3 _)
 
 DESCRIPTION="GCC for Xtensa (crosstool-NG with support for Xtensa)"
 HOMEPAGE="https://github.com/espressif/crosstool-NG"
-
 SRC_URI="https://github.com/espressif/crosstool-NG/releases/download/esp-${MY_PV}/xtensa-esp-elf-${MY_PV}-x86_64-linux-gnu.tar.xz"
+
+S="${WORKDIR}/xtensa-esp-elf"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
-
-DEPEND=""
-RDEPEND=""
-
-S="${WORKDIR}/xtensa-esp-elf"
 
 src_install() {
 	local DEST=/opt/${PN}

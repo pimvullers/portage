@@ -7,20 +7,15 @@ MY_PV=$(ver_rs 3 _)
 
 DESCRIPTION="GCC Compilers for AVR Microcontrollers"
 HOMEPAGE="https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers"
-
 SRC_URI="https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/avr8-gnu-toolchain-${PV}-linux.any.x86_64.tar.gz"
+
+S="${WORKDIR}/avr8-gnu-toolchain-linux_x86_64"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
-
-DEPEND=""
-RDEPEND=""
-
-S="${WORKDIR}/avr8-gnu-toolchain-linux_x86_64"
 
 src_install() {
 	local DEST=/opt/${PN}

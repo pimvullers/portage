@@ -1,0 +1,10 @@
+DEFINED_PHASES=install unpack
+DESCRIPTION=Convert a .deb file to a .tar.gz archive
+EAPI=7
+HOMEPAGE=https://www.miketaylor.org.uk/tech/deb/
+KEYWORDS=amd64
+LICENSE=public-domain
+RDEPEND=dev-lang/perl
+SLOT=0
+SRC_URI=https://www.miketaylor.org.uk/tech/deb/deb2targz
+_md5_=f2b1d7c9e7f4ec9ac424594d6f3ba396

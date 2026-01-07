@@ -7,4 +7,4 @@ LICENSE=freedist
 RESTRICT=fetch preserve-libs strip
 SLOT=0
 SRC_URI=https://dls-cdn.makeblock.com/download-site/mblock5/linux/mLink-1.2.0-amd64.deb
-_md5_=f5ce259ca4746e90ab97696d82af6335
+_md5_=fe94d7ad4168d6062c74d7eb65abf7ba

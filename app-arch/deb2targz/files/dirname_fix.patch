@@ -1,0 +1,10 @@
+--- a/deb2targz	2026-01-07 15:17:36.028094645 +0100
++++ b/deb2targz	2020-05-09 22:24:54.446967809 +0200
+@@ -52,6 +52,7 @@
+ 	    my $ext = $1;
+ 	    $data = substr($data, 0, $len);
+ 	    $filename =~ s/\.deb$/.tar$ext/;
++	    $filename =~ s/\/$//;
+ 	    my $fh = new IO::File(">$filename")
+ 		or die "can't write '$filename': $!";
+ 	    print $fh $data;

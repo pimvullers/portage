@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit udev xdg
+inherit desktop udev xdg
 
 DESCRIPTION="An IDE for creating, building, debugging, and optimizing embedded applications"
 HOMEPAGE="https://mcuxpresso.nxp.com/"
@@ -21,14 +21,14 @@ IUSE="udev"
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
-DEPEND=""
-RDEPEND="${DEPEND}
+RDEPEND="
 	dev-libs/libusb-compat
 	app-mobilephone/dfu-util
 	sys-libs/ncurses-compat:5[tinfo]
 	dev-lang/python:2.7
 	virtual/libcrypt:="
-BDEPEND=""
+BDEPEND="
+	app-arch/deb2targz"
 
 pkg_nofetch() {
 	einfo "Please download ${P_FILE}"
@@ -48,7 +48,7 @@ src_unpack() {
 
 	pushd "${S}" > /dev/null
 
-	"${FILESDIR}/deb2targz" ${P_DEB} || die
+	deb2targz ${P_DEB} || die
 	unpack "${S}/${P_TGZ}" || die
 
 	popd > /dev/null
@@ -73,8 +73,7 @@ src_install() {
 
 	dolib.so usr/lib/*
 
-	insinto /usr/share/applications
-	doins usr/share/applications/*.desktop
+	domenu usr/share/applications/
 
 	dodir /opt/nxp/mcuxpressoide
 	cp -pPR "usr/local/${P_BUILD}"/* "${ED}/opt/nxp/mcuxpressoide/"

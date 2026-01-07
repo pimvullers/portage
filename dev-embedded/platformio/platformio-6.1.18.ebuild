@@ -16,7 +16,7 @@ S="${WORKDIR}"/${PN}-core-${PV}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64"
 
 RDEPEND="
 	$(python_gen_cond_dep '

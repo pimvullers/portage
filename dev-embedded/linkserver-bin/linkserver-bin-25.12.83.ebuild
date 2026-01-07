@@ -20,10 +20,10 @@ IUSE="udev"
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
-DEPEND=""
-RDEPEND="${DEPEND}
+RDEPEND="
 	sys-apps/util-linux"
-BDEPEND=""
+BDEPEND="
+	app-arch/deb2targz"
 
 pkg_nofetch() {
 	einfo "Please download ${P_FILE}"
@@ -43,7 +43,7 @@ src_unpack() {
 
 	pushd "${S}" > /dev/null
 
-	"${FILESDIR}/deb2targz" ${P_DEB} || die
+	deb2targz ${P_DEB} || die
 	unpack "${S}/${P_TGZ}" || die
 
 	popd > /dev/null

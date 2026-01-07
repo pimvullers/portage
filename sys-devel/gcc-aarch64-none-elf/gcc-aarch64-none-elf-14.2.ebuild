@@ -6,21 +6,19 @@ EAPI=7
 MY_PV="${PV}.rel1"
 
 DESCRIPTION="GNU Arm Embedded Toolchain"
-HOMEPAGE="https://developer.arm.com/open-source/gnu-toolchain/gnu-rm"
-
+HOMEPAGE="https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain"
 SRC_URI="https://developer.arm.com/-/media/Files/downloads/gnu/${MY_PV}/binrel/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf.tar.xz"
+
+S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE=""
 RESTRICT="strip"
 QA_PREBUILT="*"
 
 DEPEND="virtual/libcrypt:="
 RDEPEND="sys-libs/ncurses[tinfo]"
-
-S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-aarch64-none-elf"
 
 src_install() {
 	local DEST=/opt/${PN}

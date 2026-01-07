@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+
 inherit go-module
 
 DESCRIPTION="Tool to check for problems with Arduino projects"
@@ -13,7 +14,7 @@ SRC_URI="
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64 ~arm64"
+KEYWORDS="amd64"
 
 src_unpack() {
 	default

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+
+<pkgmetadata>
+	<maintainer type="person">
+		<email>portage@vullersmail.nl</email>
+		<name>Pim Vullers</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">espressif/esp-idf</remote-id>
+	</upstream>
+	<use>
+		<flag name="esp32">Support ESP32</flag>
+		<flag name="esp32c2">Support ESP32-C2</flag>
+		<flag name="esp32c3">Support ESP32-C3</flag>
+		<flag name="esp32c5">Support ESP32-C5</flag>
+		<flag name="esp32c6">Support ESP32-C6</flag>
+		<flag name="esp32c61">Support ESP32-C61</flag>
+		<flag name="esp32h2">Support ESP32-H2</flag>
+		<flag name="esp32p4">Support ESP32-P4</flag>
+		<flag name="esp32s2">Support ESP32-S2</flag>
+		<flag name="esp32s3">Support ESP32-S3</flag>
+	</use>
+</pkgmetadata>

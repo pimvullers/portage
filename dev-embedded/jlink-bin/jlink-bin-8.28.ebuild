@@ -9,19 +9,17 @@ DESCRIPTION="Tools for Segger J-Link JTAG adapters"
 HOMEPAGE="https://www.segger.com/downloads/jlink/"
 SRC_URI="https://www.segger.com/downloads/jlink/JLink_Linux_V${PV/\./}_x86_64.tgz"
 
+S=${WORKDIR}/"JLink_Linux_V${PV/\./}_x86_64"
+
 LICENSE="Segger"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 RESTRICT="fetch preserve-libs strip"
 QA_PREBUILT="*"
 
-DEPEND=""
-RDEPEND="${DEPEND}
+RDEPEND="
 	acct-group/plugdev"
-
-S=${WORKDIR}/"JLink_Linux_V${PV/\./}_x86_64"
 
 pkg_nofetch() {
 	einfo "Please download the source archive (after accepting the license agreement)"
@@ -78,13 +76,13 @@ src_install() {
 
 	# Install binaries and symlinks in INSTALLDIR
 	exeinto ${INSTALLDIR}
-	for exe in ${EXE_FILES[@]}; do 
+	for exe in ${EXE_FILES[@]}; do
 		doexe ${exe} || die
 	done
-	for sym in ${CLEXE_SYMS[@]}; do 
+	for sym in ${CLEXE_SYMS[@]}; do
 		dosym "${sym}CLExe" ${INSTALLDIR}/${sym} || die
 	done
-	for sym in ${EXE_SYMS[@]}; do 
+	for sym in ${EXE_SYMS[@]}; do
 		dosym "${sym}Exe" ${INSTALLDIR}/${sym} || die
 	done
 	dosym JFlashSPICLExe ${INSTALLDIR}/JFlashSPI_CL || die
@@ -102,14 +100,21 @@ src_install() {
 
 	for LIB in libjlinkarm libjlinkarm_x86; do
 		doexe "${LIB}.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" || die
-		dosym "${LIB}.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" "${INSTALLDIR}/${LIB}.so.${V_MAJOR}.${V_MINOR}" || die
-		dosym "${LIB}.so.${V_MAJOR}.${V_MINOR}" "${INSTALLDIR}/${LIB}.so.${V_MAJOR}" || die
-		dosym "${LIB}.so.${V_MAJOR}" "${INSTALLDIR}/${LIB}.so" || die
+		dosym "${LIB}.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" \
+			"${INSTALLDIR}/${LIB}.so.${V_MAJOR}.${V_MINOR}" || die
+		dosym "${LIB}.so.${V_MAJOR}.${V_MINOR}" \
+			"${INSTALLDIR}/${LIB}.so.${V_MAJOR}" || die
+		dosym "${LIB}.so.${V_MAJOR}" \
+			"${INSTALLDIR}/${LIB}.so" || die
 	done
-	dosym "../libjlinkarm_x86.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" "${INSTALLDIR}/x86/libjlinkarm.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" || die
-	dosym "libjlinkarm.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" "${INSTALLDIR}/x86/libjlinkarm.so.${V_MAJOR}.${V_MINOR}" || die
-	dosym "libjlinkarm.so.${V_MAJOR}.${V_MINOR}" "${INSTALLDIR}/x86/libjlinkarm.so.${V_MAJOR}" || die
-	dosym "libjlinkarm.so.${V_MAJOR}" "${INSTALLDIR}/x86/libjlinkarm.so" || die
+	dosym "../libjlinkarm_x86.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" \
+		"${INSTALLDIR}/x86/libjlinkarm.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" || die
+	dosym "libjlinkarm.so.${V_MAJOR}.${V_MINOR}.${V_PATCH}" \
+		"${INSTALLDIR}/x86/libjlinkarm.so.${V_MAJOR}.${V_MINOR}" || die
+	dosym "libjlinkarm.so.${V_MAJOR}.${V_MINOR}" \
+		"${INSTALLDIR}/x86/libjlinkarm.so.${V_MAJOR}" || die
+	dosym "libjlinkarm.so.${V_MAJOR}" \
+		"${INSTALLDIR}/x86/libjlinkarm.so" || die
 
 	for LIB in libQtCore libQtGui; do
 		doexe "${LIB}.so.4.8.7" || die
@@ -143,4 +148,3 @@ pkg_postinst() {
 pkg_postrm() {
 	udev_reload
 }
-
