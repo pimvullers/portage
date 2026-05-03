@@ -9,6 +9,6 @@ LICENSE=Segger
 RDEPEND=acct-group/plugdev
 RESTRICT=fetch preserve-libs strip
 SLOT=0
-SRC_URI=https://www.segger.com/downloads/jlink/JLink_Linux_V896_x86_64.tgz
+SRC_URI=https://www.segger.com/downloads/jlink/JLink_Linux_V940_x86_64.tgz
 _eclasses_=toolchain-funcs	58a918e3a42d0156f010dcfd43725be5	udev	1a23882bb73bc31c64a6f00a5e515f34
 _md5_=adaf230824a638ff3dc65d8ec1dd6d3c

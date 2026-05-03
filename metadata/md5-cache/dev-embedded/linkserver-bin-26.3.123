@@ -1,0 +1,13 @@
+BDEPEND=app-arch/deb2targz
+DEFINED_PHASES=install nofetch unpack
+DESCRIPTION=Utility for launching and managing GDB servers for NXP debug probes
+EAPI=7
+HOMEPAGE=https://www.nxp.com/design/design-center/software/development-software/mcuxpresso-software-and-tools-/linkserver-for-microcontrollers:LINKERSERVER
+IUSE=udev
+KEYWORDS=~amd64
+LICENSE=NXP_LA_OPT_TOOL
+RDEPEND=sys-apps/util-linux
+RESTRICT=fetch preserve-libs strip
+SLOT=0
+SRC_URI=https://cache.nxp.com/secured/updates/linker/LinkServer_26.3.123.x86_64.deb.bin?fileExt=.bin -> LinkServer_26.3.123.x86_64.deb.bin
+_md5_=edf3b59e6621822dddd7bf7d29eea95c

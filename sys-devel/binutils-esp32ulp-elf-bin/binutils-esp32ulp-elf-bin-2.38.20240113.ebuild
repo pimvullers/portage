@@ -1,26 +1,21 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-MY_PV="${PV}.rel1"
+MY_PV=$(ver_rs 2 _)
 
-DESCRIPTION="GNU Arm Embedded Toolchain"
-HOMEPAGE="https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain"
-SRC_URI="https://developer.arm.com/-/media/Files/downloads/gnu/${MY_PV}/binrel/arm-gnu-toolchain-${MY_PV}-x86_64-arm-none-eabi.tar.xz"
+DESCRIPTION="Binutils with support for the ESP32 ULP co-processor"
+HOMEPAGE="https://github.com/espressif/binutils-gdb"
+SRC_URI="https://github.com/espressif/binutils-gdb/releases/download/esp32ulp-elf-${MY_PV}/esp32ulp-elf-${MY_PV}-linux-amd64.tar.gz"
 
-S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-arm-none-eabi"
+S="${WORKDIR}/esp32ulp-elf"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
 KEYWORDS="amd64"
 RESTRICT="strip"
 QA_PREBUILT="*"
-
-DEPEND="virtual/libcrypt:="
-RDEPEND="${DEPEND}
-	sys-libs/ncurses[tinfo]
-	dev-lang/python:3.8"
 
 src_install() {
 	local DEST=/opt/${PN}
@@ -35,7 +30,7 @@ ROOTPATH=${DEST}/bin
 LDPATH=${DEST}/lib
 MANPATH=${DEST}/share/man
 EOF
-	newenvd "${T}/env" 99gcc-arm-embedded-bin
+	newenvd "${T}/env" 99binutils-esp32ulp-elf-bin
 }
 
 pkg_postinst() {

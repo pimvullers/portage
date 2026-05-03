@@ -1,26 +1,21 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-MY_PV="${PV}.rel1"
+MY_PV=$(ver_rs 3 _)
 
-DESCRIPTION="GNU Arm Embedded Toolchain"
-HOMEPAGE="https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain"
-SRC_URI="https://developer.arm.com/-/media/Files/downloads/gnu/${MY_PV}/binrel/arm-gnu-toolchain-${MY_PV}-x86_64-arm-none-eabi.tar.xz"
+DESCRIPTION="GCC for RISC-V (crosstool-NG with support for Xtensa)"
+HOMEPAGE="https://github.com/espressif/crosstool-NG"
+SRC_URI="https://github.com/espressif/crosstool-NG/releases/download/esp-${MY_PV}/riscv32-esp-elf-${MY_PV}-x86_64-linux-gnu.tar.xz"
 
-S="${WORKDIR}/arm-gnu-toolchain-${MY_PV}-x86_64-arm-none-eabi"
+S="${WORKDIR}/riscv32-esp-elf"
 
 LICENSE="BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB"
 SLOT="0"
 KEYWORDS="amd64"
 RESTRICT="strip"
 QA_PREBUILT="*"
-
-DEPEND="virtual/libcrypt:="
-RDEPEND="${DEPEND}
-	sys-libs/ncurses[tinfo]
-	dev-lang/python:3.8"
 
 src_install() {
 	local DEST=/opt/${PN}
@@ -35,7 +30,7 @@ ROOTPATH=${DEST}/bin
 LDPATH=${DEST}/lib
 MANPATH=${DEST}/share/man
 EOF
-	newenvd "${T}/env" 99gcc-arm-embedded-bin
+	newenvd "${T}/env" 99gcc-riscv32-esp-elf-bin
 }
 
 pkg_postinst() {

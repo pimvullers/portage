@@ -1,0 +1,10 @@
+DEFINED_PHASES=install postinst
+DESCRIPTION=GCC for RISC-V (crosstool-NG with support for Xtensa)
+EAPI=7
+HOMEPAGE=https://github.com/espressif/crosstool-NG
+KEYWORDS=amd64
+LICENSE=BSD GPL-2 LGPL-2 LGPL-3 MIT NEWLIB ZLIB
+RESTRICT=strip
+SLOT=0
+SRC_URI=https://github.com/espressif/crosstool-NG/releases/download/esp-15.2.0_20251204/riscv32-esp-elf-15.2.0_20251204-x86_64-linux-gnu.tar.xz
+_md5_=a3883bbbdab8d70af74aeda910a28f46

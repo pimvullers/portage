@@ -21,7 +21,7 @@ src_install() {
 	local DEST=/opt/${PN}
 
 	dodir ${DEST}
-	\cp -r "${S}"/* "${ED}${DEST}"
+	cp -r "${S}"/* "${ED}${DEST}"
 	fowners -R root:0 ${DEST}
 
 	cat > "${T}/env" << EOF
