@@ -25,7 +25,7 @@ pkg_nofetch() {
 	einfo "Please download ${P_DEB}"
 	einfo "and move it to your distfiles directory:"
 	einfo
-	einfo "  https://mblock.makeblock.com/en/download/mlink/"
+	einfo "  https://mblock.cc/pages/downloads"
 	einfo
 }
 
