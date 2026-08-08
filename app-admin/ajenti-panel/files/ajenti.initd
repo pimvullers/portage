@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+# Copyright 2026 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+name="Ajenti Control Panel"
+description="Modular, extensible web-based server administration panel"
+
+command="/usr/bin/ajenti-panel"
+command_args="${AJENTI_ARGS}"
+pidfile="/run/ajenti.pid"
+command_background="yes"
+
+depend() {
+	need net
+	after logger
+}
