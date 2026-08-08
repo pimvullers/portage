@@ -22,7 +22,7 @@ RDEPEND="
 	dev-python/pyopenssl[${PYTHON_USEDEP}]
 	dev-python/gevent[${PYTHON_USEDEP}]
 	dev-python/dbus-python[${PYTHON_USEDEP}]
-	sys-apps/augeas
+	app-admin/augeas
 "
 DEPEND="${RDEPEND}"
 
