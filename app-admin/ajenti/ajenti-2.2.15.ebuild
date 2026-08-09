@@ -5,10 +5,11 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_11 python3_12 python3_13 python3_14 )
 DISTUTILS_USE_PEP517=setuptools
-inherit distutils-r1 pypi systemd
+inherit distutils-r1 systemd
 
 DESCRIPTION="A modular, extensible web-based server administration panel"
 HOMEPAGE="https://ajenti.org"
+SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-3"
 SLOT="0"
@@ -27,23 +28,30 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
-# List of internal plugins to build if USE=plugins is set
+# Array tracking all valid internal components
 AJENTI_PLUGINS=(
 	core dashboard settings plugins notepad
 	terminal filemanager packages services
 )
 
 python_compile() {
-	distutils-r1_python_compile
+	# Step 1: Compile the core engine sub-packages manually using explicit legacy setups
+	einfo "Compiling Ajenti Core components..."
+	cd "${S}/ajenti-core" || die
+	DISTUTILS_USE_PEP517=setuptools distutils-r1_python_compile
+	
+	cd "${S}/ajenti-panel" || die
+	DISTUTILS_USE_PEP517=setuptools distutils-r1_python_compile
+	cd "${S}" || die
 
-	# Build plugins if USE flag is active
+	# Step 2: Navigate and compile selected sub-module extensions if flag is present
 	if use plugins; then
 		local plugin
 		for plugin in "${AJENTI_PLUGINS[@]}"; do
 			if [[ -d "plugins/${plugin}" ]]; then
 				einfo "Compiling plugin: ajenti.plugin.${plugin}"
-				cd "plugins/${plugin}" || die
-				distutils-r1_python_compile
+				cd "${S}/plugins/${plugin}" || die
+				DISTUTILS_USE_PEP517=setuptools distutils-r1_python_compile
 				cd "${S}" || die
 			fi
 		done
@@ -51,16 +59,23 @@ python_compile() {
 }
 
 src_install() {
-	distutils-r1_src_install
+	# Step 1: Install core engine sub-packages
+	einfo "Installing Ajenti Core components..."
+	cd "${S}/ajenti-core" || die
+	DISTUTILS_USE_PEP517=setuptools distutils-r1_src_install
+	
+	cd "${S}/ajenti-panel" || die
+	DISTUTILS_USE_PEP517=setuptools distutils-r1_src_install
+	cd "${S}" || die
 
-	# Install plugins if USE flag is active
+	# Step 2: Install plugins
 	if use plugins; then
 		local plugin
 		for plugin in "${AJENTI_PLUGINS[@]}"; do
 			if [[ -d "plugins/${plugin}" ]]; then
 				einfo "Installing plugin: ajenti.plugin.${plugin}"
-				cd "plugins/${plugin}" || die
-				distutils-r1_src_install
+				cd "${S}/plugins/${plugin}" || die
+				DISTUTILS_USE_PEP517=setuptools distutils-r1_src_install
 				cd "${S}" || die
 			fi
 		done
@@ -84,7 +99,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	# Check if certificate exists; generate matching default if missing
 	if [[ ! -f "${ROOT}/etc/ajenti/ajenti.pem" ]]; then
 		elog "Generating self-signed SSL Certificate for secure browser access..."
 		
