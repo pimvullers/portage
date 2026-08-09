@@ -20,7 +20,8 @@ RDEPEND="
 	dev-python/zope-event[${PYTHON_USEDEP}]
 	dev-python/zope-interface[${PYTHON_USEDEP}]
 "
-DEPEND="${RDEPEND}"
+DEPEND="${RDEPEND}
+	dev-python/cython"
 
 src_prepare() {
 	distutils-r1_src_prepare

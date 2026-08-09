@@ -3,18 +3,19 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_12 python3_13 python3_14 )
+PYTHON_COMPAT=( python3_11 python3_12 python3_13 python3_14 )
 DISTUTILS_USE_PEP517=setuptools
-inherit distutils-r1 pypi
+inherit distutils-r1 pypi systemd
 
 DESCRIPTION="A modular, extensible web-based server administration panel"
-HOMEPAGE="https://ajenti.org https://github.com"
+HOMEPAGE="https://ajenti.org"
 
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+IUSE="plugins"
 
-# Dependencies adjusted for modern Python 3 environments on Gentoo
+# Dependencies adjusted for modern Python environments on Gentoo
 RDEPEND="
 	dev-python/requests[${PYTHON_USEDEP}]
 	dev-python/pillow[${PYTHON_USEDEP}]
@@ -26,14 +27,46 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
-python_prepare_all() {
-	distutils-r1_python_prepare_all
+# List of internal plugins to build if USE=plugins is set
+AJENTI_PLUGINS=(
+	core dashboard settings plugins notepad
+	terminal filemanager packages services
+)
+
+python_compile() {
+	distutils-r1_python_compile
+
+	# Build plugins if USE flag is active
+	if use plugins; then
+		local plugin
+		for plugin in "${AJENTI_PLUGINS[@]}"; do
+			if [[ -d "plugins/${plugin}" ]]; then
+				einfo "Compiling plugin: ajenti.plugin.${plugin}"
+				cd "plugins/${plugin}" || die
+				distutils-r1_python_compile
+				cd "${S}" || die
+			fi
+		done
+	fi
 }
 
 src_install() {
 	distutils-r1_src_install
 
-	# Install OpenRC init script and config file from FILESDIR
+	# Install plugins if USE flag is active
+	if use plugins; then
+		local plugin
+		for plugin in "${AJENTI_PLUGINS[@]}"; do
+			if [[ -d "plugins/${plugin}" ]]; then
+				einfo "Installing plugin: ajenti.plugin.${plugin}"
+				cd "plugins/${plugin}" || die
+				distutils-r1_src_install
+				cd "${S}" || die
+			fi
+		done
+	fi
+
+	# Install OpenRC init configurations
 	newinitd "${FILESDIR}/ajenti.initd" ajenti
 	newconfd "${FILESDIR}/ajenti.confd" ajenti
 
@@ -45,28 +78,32 @@ src_install() {
 	newins "${FILESDIR}/config.yml" config.yml
 	newins "${FILESDIR}/users.yml" users.yml
 
-	# Ensure system configuration paths exist
+	# Enforce persistent working directories
 	keepdir /etc/ajenti
 	keepdir /var/log/ajenti
 }
 
 pkg_postinst() {
-	# Automated fallback validation equivalent to install-venv.sh logic
-	if [[ ! -f "${ROOT}/etc/ajenti/ajenti.key" ]]; then
+	# Check if certificate exists; generate matching default if missing
+	if [[ ! -f "${ROOT}/etc/ajenti/ajenti.pem" ]]; then
 		elog "Generating self-signed SSL Certificate for secure browser access..."
 		
-		# Locate the system python binary target to invoke the built-in generator hook
 		local my_py
 		my_py=$(eselect python show)
 		
 		if ${ROOT}/usr/bin/${my_py} -c "import ajenti" &>/dev/null; then
 			${ROOT}/usr/bin/${my_py} -m ajenti.scripts.ssl_gen "$(hostname)" &>/dev/null
+			if [[ -f "${ROOT}/etc/ajenti/ajenti.crt" && -f "${ROOT}/etc/ajenti/ajenti.key" ]]; then
+				cat "${ROOT}/etc/ajenti/ajenti.crt" "${ROOT}/etc/ajenti/ajenti.key" > "${ROOT}/etc/ajenti/ajenti.pem"
+				rm "${ROOT}/etc/ajenti/ajenti.crt" "${ROOT}/etc/ajenti/ajenti.key"
+			fi
 		else
-			ewarn "Could not automatically generate SSL cert. Generate manually via openssl"
-			ewarn "or run 'ajenti-ssl-gen $(hostname)' after final target execution."
+			ewarn "Could not automatically generate SSL cert."
+			ewarn "Please generate manually or run: openssl req -new -x509 -days 365 -nodes -out /etc/ajenti/ajenti.pem -keyout /etc/ajenti/ajenti.pem"
 		fi
 	fi
 
+	elog "Configuration files successfully deployed to /etc/ajenti/ (protected by Portage)."
 	elog "To run Ajenti via OpenRC: rc-update add ajenti default && rc-service ajenti start"
 	elog "To run Ajenti via systemd: systemctl enable --now ajenti.service"
 }
