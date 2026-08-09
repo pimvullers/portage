@@ -37,7 +37,37 @@ src_install() {
 	newinitd "${FILESDIR}/ajenti.initd" ajenti
 	newconfd "${FILESDIR}/ajenti.confd" ajenti
 
+	# Install Systemd service file
+	systemd_dounit "${FILESDIR}/ajenti.service"
+
+	# Install configuration templates into protected /etc/ajenti location
+	insinto /etc/ajenti
+	newins "${FILESDIR}/config.yml" config.yml
+	newins "${FILESDIR}/users.yml" users.yml
+
 	# Ensure system configuration paths exist
 	keepdir /etc/ajenti
 	keepdir /var/log/ajenti
 }
+
+pkg_postinst() {
+	# Automated fallback validation equivalent to install-venv.sh logic
+	if [[ ! -f "${ROOT}/etc/ajenti/ajenti.key" ]]; then
+		elog "Generating self-signed SSL Certificate for secure browser access..."
+		
+		# Locate the system python binary target to invoke the built-in generator hook
+		local my_py
+		my_py=$(eselect python show)
+		
+		if ${ROOT}/usr/bin/${my_py} -c "import ajenti" &>/dev/null; then
+			${ROOT}/usr/bin/${my_py} -m ajenti.scripts.ssl_gen "$(hostname)" &>/dev/null
+		else
+			ewarn "Could not automatically generate SSL cert. Generate manually via openssl"
+			ewarn "or run 'ajenti-ssl-gen $(hostname)' after final target execution."
+		fi
+	fi
+
+	elog "To run Ajenti via OpenRC: rc-update add ajenti default && rc-service ajenti start"
+	elog "To run Ajenti via systemd: systemctl enable --now ajenti.service"
+}
+

@@ -1,0 +1,19 @@
+auth:
+  allow_sudo: true
+  emails: {}
+  provider: os
+  users_file: /etc/ajenti/users.yml
+bind:
+  host: 0.0.0.0
+  mode: tcp
+  port: 8000
+color: default
+max_sessions: 3
+session_max_time: 3600
+ssl:
+  certificate: /etc/ajenti/ajenti.pem
+  enable: true
+  force: false
+trusted_domains: []
+trusted_proxies: []
+
