@@ -28,7 +28,7 @@ RDEPEND="
 	dev-python/websockets[${PYTHON_USEDEP}]
 	sys-apps/portage[${PYTHON_USEDEP}]
 	logrotate? ( app-admin/logrotate )
-	apparmor? ( app-admin/apparmor )
+	apparmor? ( sys-apps/apparmor )
 "
 
 BDEPEND="
