@@ -1,6 +1,0 @@
-# /etc/conf.d/ajenti
-
-# Additional arguments to pass to the ajenti-panel daemon
-# Example: --config /etc/ajenti/config.yml
-AJENTI_ARGS=""
-
