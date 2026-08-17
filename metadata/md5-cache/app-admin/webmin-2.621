@@ -4,14 +4,14 @@ DEPEND=virtual/perl-MIME-Base64 virtual/perl-Socket virtual/perl-Sys-Syslog virt
 DESCRIPTION=A web-based Unix systems administration interface
 EAPI=7
 HOMEPAGE=http://www.webmin.com/
-INHERIT=pam systemd
-IUSE=minimal mysql postgres ldap
+INHERIT=pam systemd ssl-cert
+IUSE=minimal mysql postgres ldap ssl
 KEYWORDS=~amd64 ~x86
 LICENSE=BSD GPL-2
-RDEPEND=virtual/perl-MIME-Base64 virtual/perl-Socket virtual/perl-Sys-Syslog virtual/perl-Time-HiRes virtual/perl-Time-Local dev-perl/Authen-Libwrap dev-perl/IO-Tty dev-perl/MD5 dev-perl/Net-SSLeay dev-perl/Authen-PAM dev-perl/Sys-Hostname-Long >=net-dns/dnssec-tools-1.13 !minimal? ( mysql? ( dev-perl/DBD-mysql ) postgres? ( dev-perl/DBD-Pg ) ldap? ( dev-perl/perl-ldap ) dev-perl/XML-Generator dev-perl/XML-Parser )
+RDEPEND=virtual/perl-MIME-Base64 virtual/perl-Socket virtual/perl-Sys-Syslog virtual/perl-Time-HiRes virtual/perl-Time-Local dev-perl/Authen-Libwrap dev-perl/IO-Tty dev-perl/MD5 dev-perl/Net-SSLeay dev-perl/Authen-PAM dev-perl/Sys-Hostname-Long >=net-dns/dnssec-tools-1.13 !minimal? ( mysql? ( dev-perl/DBD-mysql ) postgres? ( dev-perl/DBD-Pg ) ldap? ( dev-perl/perl-ldap ) dev-perl/XML-Generator dev-perl/XML-Parser ) ssl? ( dev-libs/openssl )
 REQUIRED_USE=minimal? ( !mysql !postgres !ldap )
 RESTRICT=mirror
 SLOT=0
 SRC_URI=minimal? ( https://github.com/webmin/webmin/releases/download/2.621/webmin-2.621-minimal.tar.gz ) !minimal? ( https://github.com/webmin/webmin/releases/download/2.621/webmin-2.621.tar.gz )
-_eclasses_=toolchain-funcs	58a918e3a42d0156f010dcfd43725be5	flag-o-matic	fd3558f73f6503093adee69adf41020d	pam	b56d0c9c20fc5b553f13c8ae165a10a5	systemd	a964c0cbe818b5729da1dbfcee5be861
-_md5_=9310a00761ed7c3943d3b5d72eea835b
+_eclasses_=toolchain-funcs	58a918e3a42d0156f010dcfd43725be5	flag-o-matic	fd3558f73f6503093adee69adf41020d	pam	b56d0c9c20fc5b553f13c8ae165a10a5	systemd	a964c0cbe818b5729da1dbfcee5be861	edo	a5e294016aa84979fcb2459749eb80b2	ssl-cert	89fbacafccd672dde4fd51b8e313bf02
+_md5_=8a5b323c38e96bbf0a482063dcc00265
