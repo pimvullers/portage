@@ -11,7 +11,7 @@ MY_PV="v${PV}"
 
 DESCRIPTION="Espressif IoT Development Framework"
 HOMEPAGE="https://github.com/espressif/esp-idf"
-SRC_URI="https://dl.espressif.com/github_assets/espressif/${PN}/releases/download/${MY_PV}/${PN}-${MY_PV}.zip https://dl.espressif.com/dl/esp-idf/espidf.constraints.v6.0.txt"
+SRC_URI="https://dl.espressif.com/github_assets/espressif/${PN}/releases/download/${MY_PV}/${PN}-${MY_PV}.zip https://dl.espressif.com/dl/esp-idf/espidf.constraints.${MY_PV}.txt"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
@@ -52,16 +52,6 @@ RDEPEND="
 		dev-libs/tree-sitter-c
 	)
 "
-#idf-component-manager>=2.2
-#esp-coredump
-#esp-idf-kconfig
-#esp-idf-monitor
-#esp-idf-nvs-partition-gen
-#esp-idf-size
-#esp-idf-diag
-#esp-idf-panic-decoder
-#pyclang
-#freertos_gdb
 
 DEST="/opt/${PN}"
 PYTHON_ENV="${DEST}/python_env"
@@ -83,7 +73,7 @@ pkg_postinst() {
 	use python || return
 
 	local OPTIONS="--cache-dir ${PYTHON_ENV}/.pip_cache --quiet"
-	local CONSTRAINTS="-c ${DISTDIR}/espidf.constraints.v6.0.txt"
+	local CONSTRAINTS="-c ${DISTDIR}/espidf.constraints.${MY_PV}.txt"
 	local REQUIREMENTS="-r ${DEST}/tools/requirements/requirements.core.txt"
 
 	einfo Creating a new Python environment in ${PYTHON_ENV}
