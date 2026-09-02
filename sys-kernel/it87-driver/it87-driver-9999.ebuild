@@ -5,7 +5,7 @@ EAPI=8
 
 inherit linux-mod-r1 git-r3
 
-DESCRIPTION="Linux kernel driver for ITE IT87xx and compatible Super I/O chips (including IT8613E)"
+DESCRIPTION="Linux kernel driver for ITE IT87xx and compatible Super I/O chips"
 HOMEPAGE="https://github.com/frankcrawford/it87"
 EGIT_REPO_URI="https://github.com/frankcrawford/it87.git"
 
@@ -18,6 +18,7 @@ RDEPEND="${DEPEND}"
 
 src_compile() {
 	local modlist=( it87=hwmon )
+	local modargs=(	TARGET=${KV_FULL} )
 	linux-mod-r1_src_compile
 }
 
